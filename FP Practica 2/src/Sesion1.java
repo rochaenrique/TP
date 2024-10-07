@@ -17,7 +17,7 @@ public class Sesion1 {
                System.out.println("El numero " + opcion + " es menor que 0.");
             }
             else if (opcion > 1000) {
-               System.out.println("El numero " + opcion + " mayor que 1000");
+               System.out.println("El numero " + opcion + " es mayor que 1001");
             } else
                 System.out.println("El numero " + opcion + " es correcto");
 
@@ -27,10 +27,12 @@ public class Sesion1 {
             System.out.print("Indica el segundo numero: ");
             int opcion2 = sc.nextInt();
 
-            if (opcion <= opcion2)
-                System.out.println("El primer numero " + opcion + " es menor que " + opcion2);
-            if (opcion2 % 2 == 0)
-                System.out.println("El segundo numero " + opcion + " divisible por " + opcion2);
+            System.out.println("El primer numero " + opcion + ((opcion <= opcion2) ? "" : " no") + " es menor que " + opcion2);
+            System.out.println("El segundo numero " + opcion2 + ((opcion2 % 2 == 0) ? "" : " no")+ " es divisible por " + opcion);
+        } else { 
+            System.out.println("Opcion incorrecta");
         };
+
+        sc.close();
     };
 }
