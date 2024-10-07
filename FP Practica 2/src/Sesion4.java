@@ -2,53 +2,36 @@ import java.util.Scanner;
 import java.lang.Math;
 
 public class Sesion4 {
-    static boolean esPrimo(int n) {
-        boolean primo = true;
-        if (n < 2)
-            n = 2;
-        for (int i = 2; i < n; i++) {
-            if (n % i == 0) {
-                primo = false;
-                break;
-            }
-        }
-        return primo;
-    };
-
     static void primosGemelos(int n1, int n2) {
-        boolean primo;
         int gemelosImpresos = 1;
+        System.out.println("Primos gemelos entre " + n1 + " y " + n2 + ": ");
         if (n1 < 2)
             n1 = 2;
         for (;n1 < n2 - 2; n1++) {
-            if (esPrimo(n1) && esPrimo(n1 + 2))
-                System.out.printf("%d. %3d    %3d %n", gemelosImpresos++, n1, n1 + 2);
+            if (Sesion3.esPrimo(n1) && Sesion3.esPrimo(n1 + 2))
+                System.out.printf("\t%d. %3d    %3d %n", gemelosImpresos++, n1, n1 + 2);
         };
     };
 
     static void mostrarSumaDePrimos(int n){
-        int sumasImpresas = 0;
-        for (int i = 2; i <= n; i++) {
-            if (n - i > i && esPrimo(i) && esPrimo(n - i)) {
-                System.out.printf("%d. %3d + %3d = %d %n", sumasImpresas++, i, n - i, n);
+        int sumasImpresas = 1;
+        for (int i = 2; i < n; i++) {
+            if (n - i > i && Sesion3.esPrimo(i) && Sesion3.esPrimo(n - i)) {
+                System.out.printf("\t%d. %3d + %3d = %d %n", sumasImpresas++, i, n - i, n);
             }
         };
     };
 
     static boolean esPrimoRecursivo(int n) {
-        return esPrimo(n);
+        return Sesion3.esPrimo(n);
     };
 
     static double potencia(double base, double exponente) {
        return Math.pow(base, exponente);
     };
 
-    static void menu(Scanner sc) {
-        boolean activado = true;
-        int n, opcion;
-
-        while (activado) {
-            System.out.print("""
+    static int menu(Scanner sc) {
+            System.out.println("""
                     \n
                     1. Comprobar si un numero es primo.
                     2. Escribir los n numeros primos.
@@ -58,7 +41,17 @@ public class Sesion4 {
                     6. Calcular potencia.
                     0. Finalizar el programa.
                     """);
-            opcion = sc.nextInt();
+        System.out.print("Ingresa un numero: ");
+        return sc.nextInt();
+    };
+
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int opcion = menu(sc);
+        int n;
+        while (opcion != 0) {
             switch (opcion) {
                 case 1:
                     System.out.print("Introduzca un numero entre 1 y 1000: ");
@@ -68,15 +61,13 @@ public class Sesion4 {
                     };
                     break;
                 case 2:
-                    System.out.print("Introduze un numero entre 5 y 20: ");
-                    //usar sesion 2 aqui
+                    n = Sesion3.leerNumero(sc, 5, 20);
+                    Sesion3.escribePrimos(n);
                     break;
                 case 3:
-                    System.out.print("Introduzca un numero entre 1 y 500: ");
-                    n = sc.nextInt();
+                    n = Sesion3.leerNumero(sc, 1, 500);
                     if (n >= 1 && n <= 500) {
-                        System.out.print("Introduzca un segundo numero entre " + n + " y 500: ");
-                        int n2 = sc.nextInt();
+                        int n2 = Sesion3.leerNumero(sc, n, 500);
                         if (n2 >= 1 && n2 <= 500) {
                             primosGemelos(n, n2);
                         }
@@ -91,8 +82,7 @@ public class Sesion4 {
                     ;
                     break;
                 case 5:
-                    System.out.print("Introduzca un numero entre 1 y 1000: ");
-                    n = sc.nextInt();
+                    n = Sesion3.leerNumero(sc, 1, 1000);
                     if (n >= 1 && n <= 1000) {
                         System.out.println(n + (esPrimoRecursivo(n) ? "" : " no") + " es primo.");
                     };
@@ -108,18 +98,10 @@ public class Sesion4 {
                             System.out.println(base + " ^ " + exponente + " = " + potencia(base, exponente));
                         }
                     }
-                    break;
-                case 0:
-                    System.out.println("Adios!");
-                    activado = false;
-                    break;
             }
+            opcion = menu(sc);
         }
-    };
-
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-
-        menu(sc);
+        System.out.println("TCHAU!!!");
+        sc.close();
     };
 }
