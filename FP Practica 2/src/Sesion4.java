@@ -2,7 +2,7 @@ import java.util.Scanner;
 import java.lang.Math;
 
 public class Sesion4 {
-    static void primosGemelos(int n1, int n2) {
+    public static void primosGemelos(int n1, int n2) {
         int gemelosImpresos = 1;
         System.out.println("Primos gemelos entre " + n1 + " y " + n2 + ": ");
         if (n1 < 2)
@@ -13,7 +13,7 @@ public class Sesion4 {
         };
     };
 
-    static void mostrarSumaDePrimos(int n){
+    public static void mostrarSumaDePrimos(int n){
         int sumasImpresas = 1;
         for (int i = 2; i < n; i++) {
             if (n - i > i && Sesion3.esPrimo(i) && Sesion3.esPrimo(n - i)) {
@@ -22,15 +22,20 @@ public class Sesion4 {
         };
     };
 
-    static boolean esPrimoRecursivo(int n) {
+    public static boolean esPrimoRecursivo(int n) {
         return Sesion3.esPrimo(n);
     };
 
-    static double potencia(double base, double exponente) {
-       return Math.pow(base, exponente);
+    public static double potencia(double base, double exponente) {
+        double resultado = 1;
+        if (exponente != 0) { 
+            resultado = base * potencia(base, exponente - 1);
+        };
+        return resultado;
     };
 
-    static int menu(Scanner sc) {
+
+    public static int menu(Scanner sc) {
             System.out.println("""
                     \n
                     1. Comprobar si un numero es primo.
@@ -54,11 +59,8 @@ public class Sesion4 {
         while (opcion != 0) {
             switch (opcion) {
                 case 1:
-                    System.out.print("Introduzca un numero entre 1 y 1000: ");
-                    n = sc.nextInt();
-                    if (n >= 1 && n <= 1000) {
-                        System.out.println(n + (esPrimoRecursivo(n) ? "" : " no") + " es primo.");
-                    };
+                    n = Sesion3.leerNumero(sc, 1, 1000);
+                    System.out.println(n + (esPrimoRecursivo(n) ? "" : " no") + " es primo.");
                     break;
                 case 2:
                     n = Sesion3.leerNumero(sc, 5, 20);
@@ -74,9 +76,8 @@ public class Sesion4 {
                     }
                     break;
                 case 4:
-                    System.out.print("Introduzca un numero par entre 4 y 1000: ");
-                    n = sc.nextInt();
-                    if (n >= 4 && n <= 1000 && n % 2 == 0) {
+                    n = Sesion3.leerNumero(sc, 4, 1000);
+                    if (n % 2 == 0) {
                         mostrarSumaDePrimos(n);
                     }
                     ;
