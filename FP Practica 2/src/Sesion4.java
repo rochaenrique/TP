@@ -1,5 +1,4 @@
 import java.util.Scanner;
-import java.lang.Math;
 
 public class Sesion4 {
     public static void primosGemelos(int n1, int n2) {
@@ -22,8 +21,18 @@ public class Sesion4 {
         };
     };
 
-    public static boolean esPrimoRecursivo(int n) {
-        return Sesion3.esPrimo(n);
+    public static boolean esPrimoRecursivo(int numero) {
+        return esPrimoRecursivo(numero, 2);
+    };
+
+    private static boolean esPrimoRecursivo(int numero, int posibleDivisor) {
+        boolean resultado = true;
+        if (posibleDivisor <= numero / 2) { 
+            resultado = false;
+            if (numero % posibleDivisor != 0) 
+                resultado = esPrimoRecursivo(numero, posibleDivisor + 1);
+        };
+        return resultado;
     };
 
     public static double potencia(double base, double exponente) {
