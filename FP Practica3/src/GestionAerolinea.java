@@ -85,10 +85,10 @@ public class GestionAerolinea {
         return numero;
     }
 
-    public int preguntarVuelo() {
+    public Vuelo preguntarVuelo() {
         int numero;
         numero = leerNumero(0, 2, "Elija el vuelo (0: La Habana, 1: Cancún, 2: Punta Cana) ");
-        return numero;
+        return vuelos[numero];
     }
 
     public Clase preguntarClase() {
