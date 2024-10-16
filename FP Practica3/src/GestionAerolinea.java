@@ -70,9 +70,15 @@ public class GestionAerolinea {
 
     public int menu() {
         // Muestra el menú de opciones
-        int opcion;
-        // Código
-        return opcion;
+        return leerNumero(0, 6, """
+            1. Inicializar aviones y vuelos\n
+            2. Reservar asiento\n
+            3. Mostrar el mapa de asientos\n
+            4. Mostrar la lista de pasajeros\n
+            5. Mostrar pasajeros menores de 15 años\n
+            6. Mostrar ingresos del vuelo\n
+            0. Finalizar
+            """);
     }
 
     public int leerNumero(int minimo, int maximo, String mensaje) {

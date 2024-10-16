@@ -4,22 +4,24 @@ public class Asiento {
     private Pasajero pasajero;
 
     public Asiento(int fila, int butaca, Pasajero pasajero) {
-        // código
+        this.fila = fila;
+        this.butaca = butaca;
+        this.pasajero = pasajero;
     }
 
     public int getFila() {
-        // código
+        return fila;
     }
 
     public int getButaca() {
-        // código
+        return butaca;
     }
 
     public Pasajero getPasajero() {
-        // código
+        return pasajero;
     }
 
     public String toString() {
-        // código
+        return "" + fila + (char)(butaca + 'A');
     }
 }
