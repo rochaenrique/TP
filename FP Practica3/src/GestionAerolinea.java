@@ -34,22 +34,24 @@ public class GestionAerolinea {
         // Ejecuta el código asociado a la opción
         switch (opcion) {
             case 1: // Inicializar aviones y vuelos
-                // Código
+                iniciarAvionesYVuelos();
                 break;
             case 2: // Reservar asiento en un vuelo
-                // Código
+                Vuelo vueloAReservar = preguntarVuelo();
+                Clase claseAReservar = preguntarClase();
+                reservarAsiento(vueloAReservar.getAvion(), claseAReservar);
                 break;
             case 3: // Mostrar el mapa de asientos
-                // Código
+                preguntarVuelo().getAvion().mostrarMapaDeAsientos();
                 break;
             case 4: // Mostrar la lista de pasajeros
-                // Código
+                mostrarPasajeros(preguntarVuelo().getAvion());
                 break;
             case 5: // Mostrar pasajeros menores de 15 años
-                // Código
+                mostrarPasajeros(preguntarVuelo().getAvion(), 15);
                 break;
             case 6: // Mostrar ingresos del vuelo
-                // Código
+                mostrarIngresos(preguntarVuelo().getAvion());
                 break;
             default: // Finalizar
                 System.out.println("Fin de la ejecución.");
@@ -70,15 +72,7 @@ public class GestionAerolinea {
 
     public int menu() {
         // Muestra el menú de opciones
-        return leerNumero(0, 6, """
-            1. Inicializar aviones y vuelos\n
-            2. Reservar asiento\n
-            3. Mostrar el mapa de asientos\n
-            4. Mostrar la lista de pasajeros\n
-            5. Mostrar pasajeros menores de 15 años\n
-            6. Mostrar ingresos del vuelo\n
-            0. Finalizar
-            """);
+        return leerNumero(0, 6, " 1. Inicializar aviones y vuelos\n 2. Reservar asiento\n 3. Mostrar el mapa de asientos\n 4. Mostrar la lista de pasajeros\n 5. Mostrar pasajeros menores de 15 años\n 6. Mostrar ingresos del vuelo\n 0. Finalizar\n");
     }
 
     public int leerNumero(int minimo, int maximo, String mensaje) {
